@@ -1,11 +1,14 @@
 import argparse
+import logging
 
 import requests
+from tqdm import tqdm
 from bs4 import BeautifulSoup
 from typing import Set, Dict, Union
 
 IMDB_ADDRESS = 'https://www.imdb.com/'
 SEARCH_ADDRESS = IMDB_ADDRESS + 'search/title'
+MAX_FILMS = 1000
 FILM_INFO_ROOT_ADDRESS = IMDB_ADDRESS + 'title/'
 
 SCRIPT_DESCRIPTION = """Скрипт для парсинга IMDB. Собирает следующие атрибуты фильмов, подходящих под заданные """ + \
@@ -24,6 +27,10 @@ TITLE_TYPES: Set[str] = {tag['value'] for tag in soup.find_all('input', attrs={'
 GENRES: Set[str] = {tag['value'] for tag in soup.find_all('input', attrs={'name': 'genres'})}
 NUM_FILMS_ON_ONE_PAGE = 50
 
+logging.basicConfig(filename='parse_imdb.log', filemode='w', level=logging.DEBUG)
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
 
 def is_date_correct(date: str) -> bool:
     return len(date) == 10 and date[:4].isdigit() and date[5:7].isdigit() and date[8:10].isdigit()
@@ -35,14 +42,18 @@ def get_html_params(args: argparse.Namespace) -> Dict[str, Union[str, int]]:
     if args.title_type:
         for title_type in args.title_type.split():
             if title_type.lower() not in TITLE_TYPES:
-                raise Exception(f"{title_type} isn't one of available types")
+                msg = f"{title_type} isn't one of available types"
+                logging.critical(msg)
+                raise Exception(msg)
         params['title_type'] = args.title_type.split()
 
     if args.release_date_from:
         if is_date_correct(args.release_date_from):
             params['release_date'] = args.release_date_from
         else:
-            raise Exception('Date must be in YYYY-MM-DD format')
+            msg = 'Date must be in YYYY-MM-DD format'
+            logging.critical(msg)
+            raise Exception(msg)
     else:
         params['release_date'] = ''
     params['release_date'] += ','
@@ -50,31 +61,55 @@ def get_html_params(args: argparse.Namespace) -> Dict[str, Union[str, int]]:
         if is_date_correct(args.release_date_to):
             params['release_date'] += args.release_date_to
         else:
-            raise Exception('Date must be in YYYY-MM-DD format')
+            msg = 'Date must be in YYYY-MM-DD format'
+            logging.critical(msg)
+            raise Exception(msg)
     else:
         params['release_date'] += ''
 
     if args.genres:
         for genre in args.genres:
             if genre.lower() not in GENRES:
-                raise Exception(f"{genre} isn't one of available genres")
+                msg = f"{genre} isn't one of available genres"
+                logging.critical(msg)
+                raise Exception(msg)
         params['genres'] = args.genres.split()
 
     if float(args.min_user_rating >= 0.) and float(args.min_user_rating) <= 10.:
-        params['user_rating'] = f'{args.min_user_rating}'
+        if float(args.min_user_rating) % 1:
+            params['user_rating'] = f'{round(args.min_user_rating, 1)}'
+        else:
+            params['user_rating'] = f'{round(args.min_user_rating)}'
     else:
-        raise Exception('Min user rating must be a number from 0 to 10')
+        msg = 'Min user rating must be a number from 0 to 10'
+        logging.critical(msg)
+        raise Exception(msg)
     params['user_rating'] += ','
     if float(args.max_user_rating >= 0.) and float(args.max_user_rating) <= 10.:
-        params['user_rating'] += f'{args.max_user_rating}'
+        # check is it an integer
+        if float(args.max_user_rating) % 1:
+            params['user_rating'] += f'{round(args.max_user_rating, 1)}'
+        else:
+            params['user_rating'] += f'{round(args.max_user_rating)}'
     else:
-        raise Exception('Min user rating must be a number from 0 to 10')
+        msg = 'Min user rating must be a number from 0 to 10'
+        logging.critical(msg)
+        raise Exception(msg)
 
     if args.countries:
-        for country in args.countries:
-            if country not in COUNTRY_TO_ABBR_MAPPING.keys():
-                raise Exception(f'Unknown country {country}')
-        params['country'] = args.countries.split()
+        for country in args.countries.split(' '):
+            if country not in COUNTRY_TO_ABBR_MAPPING.keys() and country not in COUNTRY_TO_ABBR_MAPPING.values():
+                msg = f'Unknown country {country}'
+                logging.critical(msg)
+                raise Exception(msg)
+        countries = args.countries.split()
+        params['countries'] = ''
+        for country in countries:
+            country = country if country in COUNTRY_TO_ABBR_MAPPING.values() else COUNTRY_TO_ABBR_MAPPING[country]
+            country = country.lower()
+            params['countries'] += country + ','
+        params['countries'] = params['countries'][:-1]
+    logging.info(f'Got following parameters: {params}')
     params['start'] = 1
     return params
 
@@ -86,16 +121,18 @@ def handle_block(block: BeautifulSoup) -> str:
     return '\\n'.join(strings)
 
 
-def parse_imdb(params: Dict['str', Union[str, int]]) -> Dict['str', Union[str, int]]:
-    while params['start'] < 1000:
+def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str', Union[str, int]]:
+    films_parsed = 0
+    while films_parsed < n_films:
         query_html = requests.get(SEARCH_ADDRESS, params=params)
         query_soup = BeautifulSoup(query_html.text, features='html.parser')
         for film_container in query_soup.find_all('div', attrs={'class': 'lister-item-content'}):
             index = film_container.find('span', attrs={'class': 'lister-item-index unbold text-primary'}).text.strip()
             name = film_container.find('h3', attrs={'class': 'lister-item-header'}).find('a').text.strip()
-            genre = film_container.find('span', attrs={'class': 'genre'}).text.strip()
-            rating = film_container.find('div', attrs={'class': 'ratings-bar'}).find('div', attrs={'name': 'ir'})[
-                'data-value'].strip()
+            genre_elem = film_container.find('span', attrs={'class': 'genre'})
+            genre = genre_elem.text.strip() if genre_elem else 'Null'
+            rating_elem = film_container.find('div', attrs={'class': 'ratings-bar'})
+            rating = rating_elem.find('div', attrs={'name': 'ir'})['data-value'].strip() if rating_elem else 'Null'
             film_link = film_container.find('a')['href']
             film_id = film_link.split('/')[-2]
             film_url = FILM_INFO_ROOT_ADDRESS + film_id
@@ -116,26 +153,50 @@ def parse_imdb(params: Dict['str', Union[str, int]]) -> Dict['str', Union[str, i
             yield {
                 'index': index,
                 'name': name,
+                'link': film_url,
                 'genre': genre,
                 'rating': rating,
                 'details': details or 'Null',
                 'box_office': box_office or 'Null',
                 'tech_specs': tech_specs or 'Null'
             }
-        if query_soup.find('a', attrs={'class': 'lister-page-next next-page'}):
-            params['start'] += NUM_FILMS_ON_ONE_PAGE
+            films_parsed += 1
+            if films_parsed >= n_films:
+                return
 
 
 def main(args: argparse.Namespace):
     html_params = get_html_params(args)
+    query_html = requests.get(SEARCH_ADDRESS, params=html_params)
+    query_soup = BeautifulSoup(query_html.text, features='html.parser')
+
+    desc_span = query_soup.find('div', class_='desc').find('span')
+    if desc_span:
+        desc_words = desc_span.text.replace(',', '').split()
+        if len(desc_words) == 2:
+            n_films = int(desc_words[0])
+        elif len(desc_words) == 4:
+            n_films = int(desc_words[2])
+        else:
+            raise Exception(f'Cannot recognize string with films amount: {desc_span.text}')
+    else:
+        n_films = 0
+    if n_films == 0:
+        logging.info('No films found with passed parameters')
+        return
+
+    n_films = n_films if n_films <= MAX_FILMS else MAX_FILMS
     with open(args.csv_file_path, 'w', encoding='utf-8') as out_csv_file:
         out_csv_file.write(SEPARATOR.join(INFO_FIELDS) + '\n')
-        for film_info in parse_imdb(html_params):
-            print(f"{film_info['index']} {film_info['name']}")
+        for film_info in tqdm(parse_imdb(html_params, n_films), total=n_films):
+            logging.info(f"Parsing {film_info['index']} {film_info['name']} {film_info['link']}")
             out_csv_file.write(SEPARATOR.join(film_info.values()) + '\n')
+
+    logging.info(f'Parsed {n_films} films.')
 
 
 if __name__ == '__main__':
+    logging.info('Application has been started')
     parser = argparse.ArgumentParser(description=SCRIPT_DESCRIPTION)
     parser.add_argument('--csv_file_path', type=str, default='parsed_imdb.csv', help='Path to output CSV file')
     parser.add_argument('--log_file_path', type=str, default='log.txt', help='Path to log file')

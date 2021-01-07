@@ -1,0 +1,5 @@
+INFO:root:Application has been started
+INFO:root:Got following parameters: {'release_date': '2021-01-01,', 'user_rating': '0,10', 'countries': 'ru'}
+INFO:root:Parsing 1. Последний богатырь: Корень зла https://www.imdb.com/title/tt13606158
+INFO:root:Parsing 2. Mazhor. Film https://www.imdb.com/title/tt13786474
+INFO:root:Parsed 2 films.
