@@ -1,10 +1,10 @@
 import argparse
 import logging
+from typing import Set, Dict, Union
 
 import requests
-from tqdm import tqdm
 from bs4 import BeautifulSoup
-from typing import Set, Dict, Union
+from tqdm import tqdm
 
 IMDB_ADDRESS = 'https://www.imdb.com/'
 SEARCH_ADDRESS = IMDB_ADDRESS + 'search/title'
@@ -133,11 +133,13 @@ def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str'
             genre = genre_elem.text.strip() if genre_elem else 'Null'
             rating_elem = film_container.find('div', attrs={'class': 'ratings-bar'})
             rating = rating_elem.find('div', attrs={'name': 'ir'})['data-value'].strip() if rating_elem else 'Null'
+
             film_link = film_container.find('a')['href']
             film_id = film_link.split('/')[-2]
             film_url = FILM_INFO_ROOT_ADDRESS + film_id
             film_html = requests.get(film_url)
             film_soup = BeautifulSoup(film_html.text, features='html.parser')
+
             details_container = str(film_soup.find('div', id='titleDetails'))
             details_parts = details_container.split('<hr/>')
             details, box_office, tech_specs = (None for _ in range(3))
