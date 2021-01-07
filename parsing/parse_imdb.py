@@ -4,6 +4,7 @@ from typing import Set, Dict, Union
 
 import requests
 from bs4 import BeautifulSoup
+from bs4.element import NavigableString
 from tqdm import tqdm
 
 IMDB_ADDRESS = 'https://www.imdb.com/'
@@ -14,7 +15,7 @@ FILM_INFO_ROOT_ADDRESS = IMDB_ADDRESS + 'title/'
 SCRIPT_DESCRIPTION = """Скрипт для парсинга IMDB. Собирает следующие атрибуты фильмов, подходящих под заданные """ + \
                      """параметры: название, жанр, рейтинг, топ каста (stars), тип (сериал, фильм и т.д.), блоки Details, """ + \
                      """Box office, Technical specs."""
-INFO_FIELDS = ('index', 'name', 'genre', 'rating', 'details', 'box_office', 'tech_specs')
+INFO_FIELDS = ('index', 'name', 'genre', 'rating', 'type', 'stars', 'details', 'box_office', 'tech_specs')
 SEPARATOR = '\t'
 
 # init available arguments
@@ -27,9 +28,12 @@ TITLE_TYPES: Set[str] = {tag['value'] for tag in soup.find_all('input', attrs={'
 GENRES: Set[str] = {tag['value'] for tag in soup.find_all('input', attrs={'name': 'genres'})}
 NUM_FILMS_ON_ONE_PAGE = 50
 
-logging.basicConfig(filename='parse_imdb.log', filemode='w', level=logging.DEBUG)
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler('parse_imdb.log', 'w', 'utf-8')
+root_logger.addHandler(handler)
 
 
 def is_date_correct(date: str) -> bool:
@@ -68,7 +72,8 @@ def get_html_params(args: argparse.Namespace) -> Dict[str, Union[str, int]]:
         params['release_date'] += ''
 
     if args.genres:
-        for genre in args.genres:
+        genres = args.genres.split()
+        for genre in genres:
             if genre.lower() not in GENRES:
                 msg = f"{genre} isn't one of available genres"
                 logging.critical(msg)
@@ -129,16 +134,45 @@ def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str'
         for film_container in query_soup.find_all('div', attrs={'class': 'lister-item-content'}):
             index = film_container.find('span', attrs={'class': 'lister-item-index unbold text-primary'}).text.strip()
             name = film_container.find('h3', attrs={'class': 'lister-item-header'}).find('a').text.strip()
+
             genre_elem = film_container.find('span', attrs={'class': 'genre'})
             genre = genre_elem.text.strip() if genre_elem else 'Null'
+
             rating_elem = film_container.find('div', attrs={'class': 'ratings-bar'})
-            rating = rating_elem.find('div', attrs={'name': 'ir'})['data-value'].strip() if rating_elem else 'Null'
+            rating_elem = rating_elem.find('div', attrs={'name': 'ir'}) if rating_elem else None
+            rating = rating_elem['data-value'].strip() if rating_elem else 'Null'
 
             film_link = film_container.find('a')['href']
             film_id = film_link.split('/')[-2]
             film_url = FILM_INFO_ROOT_ADDRESS + film_id
             film_html = requests.get(film_url)
             film_soup = BeautifulSoup(film_html.text, features='html.parser')
+
+            # Типом будем считать то, что идет после года выпуска.
+            # Если ничего не указано, присваиваем тип Movie
+            type_ = film_container.find('span', class_='lister-item-year')
+            if type_:
+                type_ = str(type_.text)[1:-1]
+                type_ = type_.replace('–', '')
+                type_ = ''.join([char for char in type_ if char not in '1234567890']).strip()
+                if not type_:
+                    type_ = 'Movie'
+
+            credit = film_soup.find('div', class_='credit_summary_item')
+            if credit:
+                stars = ''
+                for tag in credit.children:
+                    if tag.name == 'h4':
+                        continue
+                    elif tag.name == 'span':
+                        break
+                    elif type(tag) is NavigableString:
+                        stars += str(tag)
+                    else:
+                        stars += tag.text
+                stars = stars.strip()
+            else:
+                stars = 'Null'
 
             details_container = str(film_soup.find('div', id='titleDetails'))
             details_parts = details_container.split('<hr/>')
@@ -158,6 +192,8 @@ def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str'
                 'link': film_url,
                 'genre': genre,
                 'rating': rating,
+                'type': type_ or 'Null',
+                'stars': stars,
                 'details': details or 'Null',
                 'box_office': box_office or 'Null',
                 'tech_specs': tech_specs or 'Null'
@@ -165,6 +201,7 @@ def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str'
             films_parsed += 1
             if films_parsed >= n_films:
                 return
+            params['start'] = films_parsed + 1
 
 
 def main(args: argparse.Namespace):
@@ -191,7 +228,10 @@ def main(args: argparse.Namespace):
     with open(args.csv_file_path, 'w', encoding='utf-8') as out_csv_file:
         out_csv_file.write(SEPARATOR.join(INFO_FIELDS) + '\n')
         for film_info in tqdm(parse_imdb(html_params, n_films), total=n_films):
-            logging.info(f"Parsing {film_info['index']} {film_info['name']} {film_info['link']}")
+            try:
+                logging.info(f"Parsing {film_info['index']} {film_info['name']} {film_info['link']}")
+            except UnicodeEncodeError:
+                logging.info(f"Parsing ***Unrecognized*** {film_info['name']} {film_info['link']}")
             out_csv_file.write(SEPARATOR.join(film_info.values()) + '\n')
 
     logging.info(f'Parsed {n_films} films.')

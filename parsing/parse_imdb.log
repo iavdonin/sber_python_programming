@@ -1,5 +1,66 @@
-INFO:root:Application has been started
-INFO:root:Got following parameters: {'release_date': '2021-01-01,', 'user_rating': '0,10', 'countries': 'ru'}
-INFO:root:Parsing 1. ��������� ��������: ������ ��� https://www.imdb.com/title/tt13606158
-INFO:root:Parsing 2. Mazhor. Film https://www.imdb.com/title/tt13786474
-INFO:root:Parsed 2 films.
+Application has been started
+Got following parameters: {'release_date': '2021-01-01,', 'user_rating': '0,10', 'countries': 'us'}
+Parsing 1. Господин мэр https://www.imdb.com/title/tt10662034
+Parsing 2. Call Me Kat https://www.imdb.com/title/tt10985096
+Parsing 3. The Minimalists: Less Is Now https://www.imdb.com/title/tt13583144
+Parsing 4. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 5. Headspace: Guide to Meditation https://www.imdb.com/title/tt13617024
+Parsing 6. Taking a Shot at Love https://www.imdb.com/title/tt13606088
+Parsing 7. The Wrong Real Estate Agent https://www.imdb.com/title/tt12676176
+Parsing 8. Койот https://www.imdb.com/title/tt10279176
+Parsing 9. The Great North https://www.imdb.com/title/tt9140632
+Parsing 10. Ratatouille: The TikTok Musical https://www.imdb.com/title/tt13721696
+Parsing 11. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 12. American Dream https://www.imdb.com/title/tt1998389
+Parsing 13. Mystery at Blind Frog Ranch https://www.imdb.com/title/tt13634306
+Parsing 14. A Perfect Planet https://www.imdb.com/title/tt10219322
+Parsing 15. Name That Tune https://www.imdb.com/title/tt13491734
+Parsing 16. The Jane Doe Murders https://www.imdb.com/title/tt10370714
+Parsing 17. Bloody Nun 2: The Curse https://www.imdb.com/title/tt10216812
+Parsing 18. Six Degrees with Mike Rowe https://www.imdb.com/title/tt13606240
+Parsing 19. A Deadly Bridenapping https://www.imdb.com/title/tt11904878
+Parsing 20. Gold Rush: Freddy Dodge's Mine Rescue https://www.imdb.com/title/tt13610512
+Parsing 21. Save Rosemary: The Trinity https://www.imdb.com/title/tt13698116
+Parsing 22. Hope's Legacy https://www.imdb.com/title/tt10413092
+Parsing 23. Not Quite College https://www.imdb.com/title/tt1530929
+Parsing 24. Potter's Ground https://www.imdb.com/title/tt11666128
+Parsing 25. The Flowers https://www.imdb.com/title/tt10666608
+Parsing 26. An Intervention https://www.imdb.com/title/tt13236726
+Parsing 27. Valentines Date https://www.imdb.com/title/tt12883470
+Parsing 28. Two Twisted Tales https://www.imdb.com/title/tt12959812
+Parsing 29. Don't Shoot the Messenger https://www.imdb.com/title/tt9630832
+Parsing 30. You Ain't Got These https://www.imdb.com/title/tt9776068
+Parsing 31. Beneath the Old Dark House https://www.imdb.com/title/tt3789698
+Parsing 32. NJPW Wrestle Kingdom 15 https://www.imdb.com/title/tt13574798
+Parsing 33. Justin Bieber: Anyone https://www.imdb.com/title/tt13762440
+Parsing 34. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 35. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 36. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 37. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 38. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 39. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 40. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 41. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 42. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 43. Кобра Кай https://www.imdb.com/title/tt7221388
+Parsing 44. Господин мэр https://www.imdb.com/title/tt10662034
+Parsing 45. The Watch https://www.imdb.com/title/tt8080292
+Parsing 46. Господин мэр https://www.imdb.com/title/tt10662034
+Parsing 47. Это мы https://www.imdb.com/title/tt5555260
+Parsing 48. All Elite Wrestling: Dynamite https://www.imdb.com/title/tt10691888
+Parsing 49. WWF Унижение! https://www.imdb.com/title/tt0227972
+Parsing 50. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 51. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 52. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 53. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 54. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 55. История бранных слов https://www.imdb.com/title/tt13617060
+Parsing 56. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 57. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 58. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 59. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 60. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 61. Surviving Death https://www.imdb.com/title/tt13649692
+Parsing 62. Ghost Adventures https://www.imdb.com/title/tt1319900
+Parsing 63. Toon in with Me https://www.imdb.com/title/tt13777138
+Parsed 63 films.
