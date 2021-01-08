@@ -1,66 +1,137 @@
 Application has been started
-Got following parameters: {'release_date': '2021-01-01,', 'user_rating': '0,10', 'countries': 'us'}
-Parsing 1. Господин мэр https://www.imdb.com/title/tt10662034
-Parsing 2. Call Me Kat https://www.imdb.com/title/tt10985096
-Parsing 3. The Minimalists: Less Is Now https://www.imdb.com/title/tt13583144
-Parsing 4. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 5. Headspace: Guide to Meditation https://www.imdb.com/title/tt13617024
-Parsing 6. Taking a Shot at Love https://www.imdb.com/title/tt13606088
-Parsing 7. The Wrong Real Estate Agent https://www.imdb.com/title/tt12676176
-Parsing 8. Койот https://www.imdb.com/title/tt10279176
-Parsing 9. The Great North https://www.imdb.com/title/tt9140632
-Parsing 10. Ratatouille: The TikTok Musical https://www.imdb.com/title/tt13721696
-Parsing 11. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 12. American Dream https://www.imdb.com/title/tt1998389
-Parsing 13. Mystery at Blind Frog Ranch https://www.imdb.com/title/tt13634306
-Parsing 14. A Perfect Planet https://www.imdb.com/title/tt10219322
-Parsing 15. Name That Tune https://www.imdb.com/title/tt13491734
-Parsing 16. The Jane Doe Murders https://www.imdb.com/title/tt10370714
-Parsing 17. Bloody Nun 2: The Curse https://www.imdb.com/title/tt10216812
-Parsing 18. Six Degrees with Mike Rowe https://www.imdb.com/title/tt13606240
-Parsing 19. A Deadly Bridenapping https://www.imdb.com/title/tt11904878
-Parsing 20. Gold Rush: Freddy Dodge's Mine Rescue https://www.imdb.com/title/tt13610512
-Parsing 21. Save Rosemary: The Trinity https://www.imdb.com/title/tt13698116
-Parsing 22. Hope's Legacy https://www.imdb.com/title/tt10413092
-Parsing 23. Not Quite College https://www.imdb.com/title/tt1530929
-Parsing 24. Potter's Ground https://www.imdb.com/title/tt11666128
-Parsing 25. The Flowers https://www.imdb.com/title/tt10666608
-Parsing 26. An Intervention https://www.imdb.com/title/tt13236726
-Parsing 27. Valentines Date https://www.imdb.com/title/tt12883470
-Parsing 28. Two Twisted Tales https://www.imdb.com/title/tt12959812
-Parsing 29. Don't Shoot the Messenger https://www.imdb.com/title/tt9630832
-Parsing 30. You Ain't Got These https://www.imdb.com/title/tt9776068
-Parsing 31. Beneath the Old Dark House https://www.imdb.com/title/tt3789698
-Parsing 32. NJPW Wrestle Kingdom 15 https://www.imdb.com/title/tt13574798
-Parsing 33. Justin Bieber: Anyone https://www.imdb.com/title/tt13762440
-Parsing 34. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 35. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 36. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 37. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 38. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 39. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 40. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 41. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 42. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 43. Кобра Кай https://www.imdb.com/title/tt7221388
-Parsing 44. Господин мэр https://www.imdb.com/title/tt10662034
-Parsing 45. The Watch https://www.imdb.com/title/tt8080292
-Parsing 46. Господин мэр https://www.imdb.com/title/tt10662034
-Parsing 47. Это мы https://www.imdb.com/title/tt5555260
-Parsing 48. All Elite Wrestling: Dynamite https://www.imdb.com/title/tt10691888
-Parsing 49. WWF Унижение! https://www.imdb.com/title/tt0227972
-Parsing 50. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 51. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 52. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 53. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 54. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 55. История бранных слов https://www.imdb.com/title/tt13617060
-Parsing 56. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 57. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 58. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 59. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 60. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 61. Surviving Death https://www.imdb.com/title/tt13649692
-Parsing 62. Ghost Adventures https://www.imdb.com/title/tt1319900
-Parsing 63. Toon in with Me https://www.imdb.com/title/tt13777138
-Parsed 63 films.
+Got following parameters: {'title_type': 'tv_series,tv_movie,tv_short,feature,video', 'release_date': '2020-09-01,2021-01-01', 'countries': 'ru'}
+Parsing 1. Перевал Дятлова https://www.imdb.com/title/tt11455654
+Parsing 2. Дорогие товарищи https://www.imdb.com/title/tt10796286
+Parsing 3. Серебряные коньки https://www.imdb.com/title/tt10525672
+Parsing 4. Кольская сверхглубокая https://www.imdb.com/title/tt11815960
+Parsing 5. Siren head https://www.imdb.com/title/tt12706382
+Parsing 6. Глубже! https://www.imdb.com/title/tt11439556
+Parsing 7. Последний богатырь: Корень зла https://www.imdb.com/title/tt13606158
+Parsing 8. Псих https://www.imdb.com/title/tt12827674
+Parsing 9. Вечер шутов, или Серьезно с приветом https://www.imdb.com/title/tt13318576
+Parsing 10. Китобой https://www.imdb.com/title/tt12077032
+Parsing 11. Scary Bride https://www.imdb.com/title/tt10498022
+Parsing 12. Огонь https://www.imdb.com/title/tt12200256
+Parsing 13. Побочный эффект https://www.imdb.com/title/tt13616444
+Parsing 14. Доктор Лиза https://www.imdb.com/title/tt12028944
+Parsing 15. Вдова https://www.imdb.com/title/tt12057234
+Parsing 16. Красный призрак https://www.imdb.com/title/tt10508258
+Parsing 17. Обратная связь https://www.imdb.com/title/tt13652420
+Parsing 18. Родком https://www.imdb.com/title/tt13525346
+Parsing 19. Пальмира https://www.imdb.com/title/tt11991432
+Parsing 20. Цой https://www.imdb.com/title/tt12077086
+Parsing 21. Непосредственно Каха! https://www.imdb.com/title/tt13486236
+Parsing 22. Подольские курсанты https://www.imdb.com/title/tt12216986
+Parsing 23. Полное погружение https://www.imdb.com/title/tt7892450
+Parsing 24. Гудбай, Америка https://www.imdb.com/title/tt11616036
+Parsing 25. Стрельцов https://www.imdb.com/title/tt12058242
+Parsing 26. Конференция https://www.imdb.com/title/tt11258824
+Parsing 27. Беспринципные https://www.imdb.com/title/tt12112298
+Parsing 28. На острие https://www.imdb.com/title/tt10146208
+Parsing 29. Белка и Стрелка: Карибская тайна https://www.imdb.com/title/tt13033280
+Parsing 30. Маша https://www.imdb.com/title/tt11892302
+Parsing 31. Русский рейд https://www.imdb.com/title/tt12425868
+Parsing 32. Kazanova https://www.imdb.com/title/tt13496050
+Parsing 33. Шерлок в России https://www.imdb.com/title/tt11105888
+Parsing 34. Passengers https://www.imdb.com/title/tt13711860
+Parsing 35. Смертельные иллюзии https://www.imdb.com/title/tt13465592
+Parsing 36. UFO https://www.imdb.com/title/tt12904712
+Parsing 37. Приворот. Черное венчание https://www.imdb.com/title/tt12057168
+Parsing 38. Территория https://www.imdb.com/title/tt13425470
+Parsing 39. Бег https://www.imdb.com/title/tt10933000
+Parsing 40. The Terrible https://www.imdb.com/title/tt13523738
+Parsing 41. Барбоскины на даче https://www.imdb.com/title/tt11390126
+Parsing 42. Человек из Подольска https://www.imdb.com/title/tt12286896
+Parsing 43. Bomba https://www.imdb.com/title/tt12037276
+Parsing 44. Паркет https://www.imdb.com/title/tt9699628
+Parsing 45. The Magic Behind d'ILLUSION: The Houdini Musical - The Audio Theater Experience https://www.imdb.com/title/tt12603936
+Parsing 46. Кто-нибудь видел мою девчонку? https://www.imdb.com/title/tt13311126
+Parsing 47. Troe https://www.imdb.com/title/tt13591148
+Parsing 48. Гипноз https://www.imdb.com/title/tt13029450
+Parsing 49. Сердце Пармы https://www.imdb.com/title/tt10749948
+Parsing 50. Khandra https://www.imdb.com/title/tt13236142
+Parsing 51. Waiting for death https://www.imdb.com/title/tt12934748
+Parsing 52. Скажи ей https://www.imdb.com/title/tt11349638
+Parsing 53. Собор https://www.imdb.com/title/tt12026382
+Parsing 54. Gjirokastra https://www.imdb.com/title/tt11646944
+Parsing 55. Про Лёлю и Миньку https://www.imdb.com/title/tt11493106
+Parsing 56. Пъ: Алхимик https://www.imdb.com/title/tt13427918
+Parsing 57. Три товарища https://www.imdb.com/title/tt12231752
+Parsing 58. Территория https://www.imdb.com/title/tt10448616
+Parsing 59. Это Эдик. Сказка о подаренном и украденном детстве https://www.imdb.com/title/tt13670932
+Parsing 60. Блокадный дневник https://www.imdb.com/title/tt13723712
+Parsing 61. Любовь без размера https://www.imdb.com/title/tt13385886
+Parsing 62. Vedma https://www.imdb.com/title/tt6782090
+Parsing 63. Разговорник https://www.imdb.com/title/tt13516650
+Parsing 64. Гуляй, Вася! - 2 https://www.imdb.com/title/tt10772654
+Parsing 65. Пугало https://www.imdb.com/title/tt13124586
+Parsing 66. New Graceland https://www.imdb.com/title/tt13699682
+Parsing 67. Неадекватные люди 2 https://www.imdb.com/title/tt13666772
+Parsing 68. Настя, соберись! https://www.imdb.com/title/tt13265366
+Parsing 69. Триггер https://www.imdb.com/title/tt11737816
+Parsing 70. Selfiemania https://www.imdb.com/title/tt12806982
+Parsing 71. Виктория https://www.imdb.com/title/tt12765534
+Parsing 72. Гранд канкан https://www.imdb.com/title/tt9407312
+Parsing 73. Под прикрытием https://www.imdb.com/title/tt10810348
+Parsing 74. ДАУ. Нора сын https://www.imdb.com/title/tt12370412
+Parsing 75. Sententia https://www.imdb.com/title/tt12077076
+Parsing 76. The Optimists: A Cuban Affair https://www.imdb.com/title/tt13168420
+Parsing 77. LJOY Podcast (by SAN Media) https://www.imdb.com/title/tt13666946
+Parsing 78. On the Road to Berlin https://www.imdb.com/title/tt9602880
+Parsing 79. Уцелевшие https://www.imdb.com/title/tt12055188
+Parsing 80. Министерство https://www.imdb.com/title/tt12021458
+Parsing 81. Чупакабра https://www.imdb.com/title/tt13149262
+Parsing 82. The Jar https://www.imdb.com/title/tt13290562
+Parsing 83. Тонкие материи https://www.imdb.com/title/tt12037240
+Parsing 84. Obsession https://www.imdb.com/title/tt11807190
+Parsing 85. Хозяйка горы https://www.imdb.com/title/tt12055162
+Parsing 86. The Fisherman's Daughter https://www.imdb.com/title/tt13660930
+Parsing 87. The Dead Man https://www.imdb.com/title/tt13291004
+Parsing 88. Когда она приходит https://www.imdb.com/title/tt8991604
+Parsing 89. Kak Nadya poshla za vodkoi https://www.imdb.com/title/tt13555528
+Parsing 90. Po sledu monstra https://www.imdb.com/title/tt13276198
+Parsing 91. Wine reflection https://www.imdb.com/title/tt12411372
+Parsing 92. Leonid & Friends: Vehicle https://www.imdb.com/title/tt12306132
+Parsing 93. Черный снег https://www.imdb.com/title/tt11730520
+Parsing 94. Vetki https://www.imdb.com/title/tt13280300
+Parsing 95. Опасный соблазн https://www.imdb.com/title/tt7550498
+Parsing 96. Little Big: S*ck My D*ck 2020 https://www.imdb.com/title/tt13420242
+Parsing 97. От печали до радости https://www.imdb.com/title/tt13471642
+Parsing 98. Маленький воин https://www.imdb.com/title/tt11467694
+Parsing 99. Презумпция виновности https://www.imdb.com/title/tt11730570
+Parsing 100. Земля Эльзы https://www.imdb.com/title/tt11872836
+Parsing 101. Плохая дочь https://www.imdb.com/title/tt8718776
+Parsing 102. Jumper. Treasure Hunting 3D https://www.imdb.com/title/tt13137844
+Parsing 103. The Secrets of Honey Hills https://www.imdb.com/title/tt13201650
+Parsing 104. Русская кибердеревня https://www.imdb.com/title/tt13580438
+Parsing 105. Zovi menya mamoy https://www.imdb.com/title/tt13706166
+Parsing 106. Miyagi & Andy Panda: Yamakasi https://www.imdb.com/title/tt13492204
+Parsing 107. Meteorite https://www.imdb.com/title/tt13021916
+Parsing 108. Sokrovenny Chelovek https://www.imdb.com/title/tt13450416
+Parsing 109. Blick. Nachalo https://www.imdb.com/title/tt11900494
+Parsing 110. На дальних рубежах https://www.imdb.com/title/tt7180560
+Parsing 111. No kidding https://www.imdb.com/title/tt12112474
+Parsing 112. Ich-chi https://www.imdb.com/title/tt13084912
+Parsing 113. NMDNI https://www.imdb.com/title/tt13353310
+Parsing 114. Журналюги https://www.imdb.com/title/tt8097282
+Parsing 115. Cinema isolation https://www.imdb.com/title/tt13344476
+Parsing 116. Герда https://www.imdb.com/title/tt12056978
+Parsing 117. Руммейт https://www.imdb.com/title/tt13352930
+Parsing 118. Золото https://www.imdb.com/title/tt11319342
+Parsing 119. The Melody of String Tree https://www.imdb.com/title/tt12450394
+Parsing 120. Четвертая стена https://www.imdb.com/title/tt11686600
+Parsing 121. Etyud #2 https://www.imdb.com/title/tt11963636
+Parsing 122. Eldzhey: Lamborghini Countach https://www.imdb.com/title/tt13276434
+Parsing 123. Ночь грез https://www.imdb.com/title/tt12223558
+Parsing 124. МУЛЬТ в кино. Выпуск # 116 https://www.imdb.com/title/tt12333618
+Parsing 125. Ищейка 4 https://www.imdb.com/title/tt10927636
+Parsing 126. Dva kapitana https://www.imdb.com/title/tt11557780
+Parsing 127. The Re-Stoned - Farther Beyond Moon Dust https://www.imdb.com/title/tt13446998
+Parsing 128. Portraits of a Jazz Artist: Innokenty Ivanov https://www.imdb.com/title/tt10288452
+Parsing 129. Мятный пряник https://www.imdb.com/title/tt11464438
+Parsing 130. Police Face Off as Protests in Hong Kong on China's National Day - 01-10-20 https://www.imdb.com/title/tt13346556
+Parsing 131. The Rape of Lucretia https://www.imdb.com/title/tt13173584
+Parsing 132. Trump Supporters Hold Rallies in Washington, DC After Scotus Election Ruling https://www.imdb.com/title/tt13666806
+Parsing 133. Tyomnaya storona sveta 2 https://www.imdb.com/title/tt13719800
+Parsing 134. Чумовой Новый Год! https://www.imdb.com/title/tt13752016
+Parsed 134 films.
