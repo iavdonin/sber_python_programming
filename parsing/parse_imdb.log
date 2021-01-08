@@ -1,5 +1,5 @@
 Application has been started
-Got following parameters: {'title_type': 'tv_series,tv_movie,tv_short,feature,video', 'release_date': '2020-09-01,2021-01-01', 'countries': 'ru'}
+Got following parameters: {'title_type': 'feature,tv_series,tv_movie,tv_short,video', 'release_date': '2020-09-01,2021-01-01', 'countries': 'ru'}
 Parsing 1. Перевал Дятлова https://www.imdb.com/title/tt11455654
 Parsing 2. Дорогие товарищи https://www.imdb.com/title/tt10796286
 Parsing 3. Серебряные коньки https://www.imdb.com/title/tt10525672

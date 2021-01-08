@@ -27,6 +27,10 @@ COUNTRY_TO_ABBR_MAPPING: Dict[str, str] = {
 TITLE_TYPES_SHORT: Set[str] = [tag['value'].lower() for tag in soup.find_all('input', attrs={'name': 'title_type'})]
 for_type_values = [f'title_type-{n}' for n in range(1, 12)]
 TITLE_TYPES_FULL: Set[str] = [tag.text.replace('-', ' ') for tag in soup.find_all('label', attrs={'for': for_type_values})]
+TITLE_TYPES_WORDS = []
+for t in TITLE_TYPES_FULL:
+    TITLE_TYPES_WORDS += t.split()
+TITLE_TYPES_WORDS = set(TITLE_TYPES_WORDS)
 GENRES: Set[str] = [tag['value'] for tag in soup.find_all('input', attrs={'name': 'genres'})]
 NUM_FILMS_ON_ONE_PAGE = 50
 
@@ -153,7 +157,8 @@ def parse_imdb(params: Dict['str', Union[str, int]], n_films: int) -> Dict['str'
             type_ = film_soup.find('a', title='See more release dates')
             if type_:
                 type_ = ''.join([ch for ch in type_.text if ch.isalpha() or ch == ' ']).strip()
-                type_ = type_ if type_ in TITLE_TYPES_FULL else 'Feature Film'
+                type_ = ' '.join([word for word in type_.split() if word in TITLE_TYPES_WORDS])
+                type_ = type_ or 'Feature Film'
 
             credit = film_soup.find_all('div', class_='credit_summary_item')
             if credit:
